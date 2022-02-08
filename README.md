@@ -177,7 +177,8 @@ GStreamer supports a wide variety of media-handling components, including simple
 
 
 ### RTSP Streaming
+#### Start the sender, the one with the Raspicam 
     cd ~/gst-rtsp-server-1.18.4/build/examples
     ./test-launch "v4l2src device=/dev/video0 ! video/x-h264, width=640, height=480, framerate=30/1 ! h264parse config-interval=1 ! rtph264pay name=pay0 pt=96"
-#### GStreamer to receive the stream
+#### Start the reciever and connect to the server with IP 192.168.0.151
     gst-launch-1.0 rtspsrc location=rtsp://192.168.0.151:8554/test/ latency=10 ! decodebin ! autovideosink
