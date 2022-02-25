@@ -12,11 +12,11 @@ GStreamer supports a wide variety of media-handling components, including simple
 ### Install a few dependencies
     sudo apt-get install cmake meson -y
     sudo apt-get install flex bison -y
-    sudo apt-get install libglib2.0-dev -y
-    sudo apt install librtmp-dev
-    sudo apt-get install libvo-aacenc-dev
-    sudo apt-get install libx264-dev -y
-    
+    sudo apt-get install libglib2.0-dev libjpeg-dev 
+    sudo apt-get install libgtk2.0-dev  libcanberra-gtk* 
+    sudo apt-get install libgtk-3-dev  libasound2-dev
+  
+   
 ### Install the core GStreamer libraries
     cd ~
     mkdir firdows/build && cd build
