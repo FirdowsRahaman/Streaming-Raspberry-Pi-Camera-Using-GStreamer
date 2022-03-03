@@ -1,161 +1,48 @@
-## Install GStreamer 1.18 on Windows OS
+## Install GStreamer 1.18 on Windows
 
-### Remove installed GStreamer versions
-    sudo rm -rf /usr/bin/gst-*
-    sudo rm -rf /usr/include/gstreamer-1.0
-    
-### Install a few dependencies
-    sudo apt-get install cmake meson flex bison -y
-    sudo apt-get install libglib2.0-dev libjpeg-dev libx264-dev -y 
-    sudo apt-get install libgtk2.0-dev libcanberra-gtk* libgtk-3-dev libasound2-dev -y 
-  
+### Download GStreamer and OpenCV
+* Install both gstreamer-runtime and gstreamer-development package: https://gstreamer.freedesktop.org/download/ 
+* Download OpenCV release sources (.zip file) and extract: https://github.com/opencv/opencv/archive/4.1.0.zip
+
+
+### Set Path Variable
+* Add gstreamer to Path variable\
+\
+![alt text](https://miro.medium.com/max/970/1*iWn1XktT9U5UT2NqzFuGdA.png)
+
+* Add system variable “GSTREAMER_DIR” “C:\gstreamer\1.0\x86_64” \
+\
+![alt text](https://miro.medium.com/max/1308/1*2nOzcr19lNxtYFCZn01_QA.png)
+
+* Click Configure again, The red value will change to white
+* Click Generate
+* Click “Open Project” in Visual Studio: Switch from DEBUG to RELEASE and x64 \
+\
+![alt text](https://miro.medium.com/max/928/1*i0MWwkVK4sM4n48phaHEuw.png)
+
+* Right click on INSTALL and select Build \
+\
+![alt text](https://miro.medium.com/max/554/1*_Y7n7o_z5af1gUuQ-OHhig.png)
    
-### Install the core GStreamer libraries
-    cd ~
-    mkdir firdows/build && cd firdows/build
+### Download CMAKE & Visual Studio
+*  Install CMAKE: https://cmake.org/download/ 
+*  Install Visual Studio: https://visualstudio.microsoft.com/downloads/
+*  Open CMAKE, Select OpenCV source and build folder \
+\
+![alt text](https://miro.medium.com/max/696/1*_KyykDayHWfsfhUk609Vkw.png)
 
-    wget https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-1.18.4.tar.xz
-    sudo tar -xf gstreamer-1.18.4.tar.xz
-    cd gstreamer-1.18.4
-    mkdir build && cd build
-    
-    meson --prefix=/usr \
-        --wrap-mode=nofallback \
-        -D buildtype=release \
-        -D gst_debug=false \
-        -D package-origin=https://gstreamer.freedesktop.org/src/gstreamer/ \
-        -D package-name="GStreamer 1.18.4 BLFS" ..
-    
-    sudo ninja -j4
-    sudo ninja test
-    sudo ninja install
-    sudo ldconfig
+* Hit Configure, select your Visual Studio version then click Finish \
+\
+![alt text](https://miro.medium.com/max/1004/1*uSKSIS1IAr87rjBWMn4YNA.png)
 
-### Install the GStreamer Plugins-base libraries
-    cd ../..
-
-    wget https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.18.4.tar.xz
-    sudo tar -xf gst-plugins-base-1.18.4.tar.xz
-    cd gst-plugins-base-1.18.4
-    mkdir build && cd build 
-    
-    meson --prefix=/usr \
-        -D buildtype=release \
-        -D package-origin=https://gstreamer.freedesktop.org/src/gstreamer/ ..
-    
-    sudo ninja -j4
-    sudo ninja test
-    sudo ninja install
-    sudo ldconfig
-    
- ### Install the GStreamer Plugins-good libraries
-    cd ../..
-
-    wget https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-1.18.4.tar.xz
-    sudo tar -xf gst-plugins-good-1.18.4.tar.xz
-    cd gst-plugins-good-1.18.4
-    mkdir build && cd build 
-    
-    meson --prefix=/usr       \
-       -D buildtype=release \
-       -D package-origin=https://gstreamer.freedesktop.org/src/gstreamer/ \
-       -D package-name="GStreamer 1.18.4 BLFS" ..
-    
-    sudo ninja -j4
-    sudo ninja test
-    sudo ninja install
-    sudo ldconfig
-    
+* Finally, add bin & lib folder to PATH, located in C:\opencv-4.1.0\build\install\x64\vc16 \
+\
+![alt text](https://miro.medium.com/max/1400/1*UbncaWkwTPo-Dw0G_6_76Q.png) \
+\
+![alt text](https://miro.medium.com/max/946/1*EeGo_77M5MLD8OWKT1fedw.png)
    
-    
-   ### Install the GStreamer Plugins-ugly libraries
-    cd ../..
 
-    wget https://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-1.18.4.tar.xz
-    sudo tar -xf gst-plugins-ugly-1.18.4.tar.xz
-    cd gst-plugins-ugly-1.18.4
-    mkdir build && cd build 
-    
-    meson --prefix=/usr       \
-      -D buildtype=release \
-      -D package-origin=https://gstreamer.freedesktop.org/src/gstreamer/ \
-      -D package-name="GStreamer 1.18.4 BLFS" ..
-    
-    sudo ninja -j4
-    sudo ninja test
-    sudo ninja install
-    sudo ldconfig
-    
-    
-    
-
-### Install the GStreamer Plugins-bad libraries
-    cd ../..
-
-    wget https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.18.4.tar.xz
-    sudo tar -xf gst-plugins-bad-1.18.4.tar.xz
-    cd gst-plugins-bad-1.18.4
-    mkdir build && cd build 
-    
-    meson --prefix=/usr       \
-       -D buildtype=release \
-       -D package-origin=https://gstreamer.freedesktop.org/src/gstreamer/ \
-       -D package-name="GStreamer 1.18.4 BLFS" ..
-    
-    sudo ninja -j4
-    sudo ninja test
-    sudo ninja install
-    sudo ldconfig
- ### Test the installation
-    gst-launch-1.0 videotestsrc ! videoconvert ! autovideosink
-    
-    gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-raw, width=1280, height=720, framerate=30/1 ! videoconvert ! videoscale ! clockoverlay time-format="%D %H:%M:%S" ! video/x-raw, width=640, height=360 ! autovideosink
-    
-    
-### Install the RTSP server plugin
-    cd ../..
-
-    wget https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-1.18.4.tar.xz
-    tar -xf gst-rtsp-server-1.18.4.tar.xz
-    cd gst-rtsp-server-1.18.4
-    mkdir build && cd build 
-    
-    meson --prefix=/usr       \
-       --wrap-mode=nofallback \
-       -D buildtype=release \
-       -D package-origin=https://gstreamer.freedesktop.org/src/gstreamer/ \
-       -D package-name="GStreamer 1.18.4 BLFS" ..
-    
-    sudo ninja -j4
-    sudo ninja test
-    sudo ninja install
-    sudo ldconfig
-
-### Testing rpicamsrc on  32-bit OS
-    gst-inspect-1.0 rpicamsrc
-    gst-launch-1.0 -v rpicamsrc preview=true ! fakesink
-    
-## Live Streaming
-
-### UDP Streaming
-#### Start the sender, the one with the Raspicam
-    gst-launch-1.0 -v v4l2src device=/dev/video0 num-buffers=-1 ! video/x-raw, width=640, height=480, framerate=30/1 ! videoconvert ! jpegenc ! rtpjpegpay ! udpsink host=192.168.0.121 port=5200
-
-#### Start the reciever, the one with IP 192.168.0.121
-    gst-launch-1.0 -v udpsrc port=5200 ! application/x-rtp, media=video, clock-rate=90000, payload=96 ! rtpjpegdepay ! jpegdec ! videoconvert ! autovideosink
-    
-    
-### TCP Streaming
-#### Start the sender, the one with the Raspicam and IP 192.168.0.151
-    gst-launch-1.0 -v v4l2src device=/dev/video0 num-buffers=-1 ! video/x-raw,width=640,height=480, framerate=30/1 ! videoconvert ! jpegenc ! tcpserversink  host=192.168.0.151 port=5000
-
-#### Start the reciever and connect to the server with IP 192.168.0.151
-    gst-launch-1.0 tcpclientsrc host=192.168.0.151 port=5000 ! jpegdec ! videoconvert ! autovideosink
-
-
-### RTSP Streaming
-#### Start the sender, the one with the Raspicam 
-    cd ~/gst-rtsp-server-1.18.4/build/examples
-    ./test-launch "v4l2src device=/dev/video0 ! video/x-h264, width=640, height=480, framerate=30/1 ! h264parse config-interval=1 ! rtph264pay name=pay0 pt=96"
-#### Start the reciever and connect to the server with IP 192.168.0.151
-    gst-launch-1.0 rtspsrc location=rtsp://192.168.0.151:8554/test/ latency=10 ! decodebin ! autovideosink
+### Test the Installation
+    import cv2
+    print(cv2.__file__)
+    print(cv2.getBuildInformation())
