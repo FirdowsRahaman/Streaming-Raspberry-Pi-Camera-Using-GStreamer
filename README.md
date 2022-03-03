@@ -10,16 +10,14 @@ GStreamer supports a wide variety of media-handling components, including simple
     sudo rm -rf /usr/include/gstreamer-1.0
     
 ### Install a few dependencies
-    sudo apt-get install cmake meson -y
-    sudo apt-get install flex bison -y
-    sudo apt-get install libglib2.0-dev libjpeg-dev 
-    sudo apt-get install libgtk2.0-dev  libcanberra-gtk* 
-    sudo apt-get install libgtk-3-dev  libasound2-dev
+    sudo apt-get install cmake meson flex bison -y
+    sudo apt-get install libglib2.0-dev libjpeg-dev libx264-dev -y 
+    sudo apt-get install libgtk2.0-dev libcanberra-gtk* libgtk-3-dev libasound2-dev -y 
   
    
 ### Install the core GStreamer libraries
     cd ~
-    mkdir firdows/build && cd build
+    mkdir firdows/build && cd firdows/build
 
     wget https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-1.18.4.tar.xz
     sudo tar -xf gstreamer-1.18.4.tar.xz
@@ -73,23 +71,7 @@ GStreamer supports a wide variety of media-handling components, including simple
     sudo ninja install
     sudo ldconfig
     
-   ### Install the GStreamer Plugins-bad libraries
-    cd ../..
-
-    wget https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.18.4.tar.xz
-    sudo tar -xf gst-plugins-bad-1.18.4.tar.xz
-    cd gst-plugins-bad-1.18.4
-    mkdir build && cd build 
-    
-    meson --prefix=/usr       \
-       -D buildtype=release \
-       -D package-origin=https://gstreamer.freedesktop.org/src/gstreamer/ \
-       -D package-name="GStreamer 1.18.4 BLFS" ..
-    
-    sudo ninja -j4
-    sudo ninja test
-    sudo ninja install
-    sudo ldconfig
+   
     
    ### Install the GStreamer Plugins-ugly libraries
     cd ../..
@@ -108,32 +90,32 @@ GStreamer supports a wide variety of media-handling components, including simple
     sudo ninja test
     sudo ninja install
     sudo ldconfig
+    
+    
+    
 
-### Test the installation
-    gst-launch-1.0 videotestsrc ! videoconvert ! autovideosink
-    
-    gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-raw, width=1280, height=720, framerate=30/1 ! videoconvert ! videoscale ! clockoverlay time-format="%D %H:%M:%S" ! video/x-raw, width=640, height=360 ! autovideosink
-    
- ### Install the omxh264enc plugin
- Omxh264enc plugin can be use as an alternative to the v4l2h264enc plugin. The installation will only succeed on 32-bit operating system not on a 64-bit system. Note  that the 
- installed omxh264enc only accepts raw and h264 video streams as input.
- 
+### Install the GStreamer Plugins-bad libraries
     cd ../..
 
-    wget https://gstreamer.freedesktop.org/src/gst-omx/gst-omx-1.18.4.tar.xz
-    sudo tar -xf gst-omx-1.18.4.tar.xz
-    cd gst-omx-1.18.4
+    wget https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.18.4.tar.xz
+    sudo tar -xf gst-plugins-bad-1.18.4.tar.xz
+    cd gst-plugins-bad-1.18.4
     mkdir build && cd build 
     
     meson --prefix=/usr       \
-       -D header_path=/opt/vc/include/IL \
-       -D target=rpi \
-       -D buildtype=release ..
+       -D buildtype=release \
+       -D package-origin=https://gstreamer.freedesktop.org/src/gstreamer/ \
+       -D package-name="GStreamer 1.18.4 BLFS" ..
     
     sudo ninja -j4
     sudo ninja test
     sudo ninja install
     sudo ldconfig
+ ### Test the installation
+    gst-launch-1.0 videotestsrc ! videoconvert ! autovideosink
+    
+    gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-raw, width=1280, height=720, framerate=30/1 ! videoconvert ! videoscale ! clockoverlay time-format="%D %H:%M:%S" ! video/x-raw, width=640, height=360 ! autovideosink
+    
     
 ### Install the RTSP server plugin
     cd ../..
