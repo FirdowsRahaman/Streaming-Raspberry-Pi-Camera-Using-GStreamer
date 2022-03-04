@@ -135,27 +135,3 @@
     gst-inspect-1.0 rpicamsrc
     gst-launch-1.0 -v rpicamsrc preview=true ! fakesink
     
-## Live Streaming
-
-### UDP Streaming
-#### Start the sender, the one with the Raspicam
-    gst-launch-1.0 -v v4l2src device=/dev/video0 num-buffers=-1 ! video/x-raw, width=640, height=480, framerate=30/1 ! videoconvert ! jpegenc ! rtpjpegpay ! udpsink host=192.168.0.121 port=5200
-
-#### Start the reciever, the one with IP 192.168.0.121
-    gst-launch-1.0 -v udpsrc port=5200 ! application/x-rtp, media=video, clock-rate=90000, payload=96 ! rtpjpegdepay ! jpegdec ! videoconvert ! autovideosink
-    
-    
-### TCP Streaming
-#### Start the sender, the one with the Raspicam and IP 192.168.0.151
-    gst-launch-1.0 -v v4l2src device=/dev/video0 num-buffers=-1 ! video/x-raw,width=640,height=480, framerate=30/1 ! videoconvert ! jpegenc ! tcpserversink  host=192.168.0.151 port=5000
-
-#### Start the reciever and connect to the server with IP 192.168.0.151
-    gst-launch-1.0 tcpclientsrc host=192.168.0.151 port=5000 ! jpegdec ! videoconvert ! autovideosink
-
-
-### RTSP Streaming
-#### Start the sender, the one with the Raspicam 
-    cd ~/gst-rtsp-server-1.18.4/build/examples
-    ./test-launch "v4l2src device=/dev/video0 ! video/x-h264, width=640, height=480, framerate=30/1 ! h264parse config-interval=1 ! rtph264pay name=pay0 pt=96"
-#### Start the reciever and connect to the server with IP 192.168.0.151
-    gst-launch-1.0 rtspsrc location=rtsp://192.168.0.151:8554/test/ latency=10 ! decodebin ! autovideosink
