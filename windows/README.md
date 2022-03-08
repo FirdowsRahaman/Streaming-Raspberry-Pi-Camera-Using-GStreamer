@@ -8,21 +8,12 @@
 ### Set Path Variable
 * Add gstreamer to Path variable\
 \
-![alt text](https://miro.medium.com/max/970/1*iWn1XktT9U5UT2NqzFuGdA.png)
+![alt text](https://github.com/FirdowsRahaman/Streaming-Raspberry-Pi-Camera-Using-GStreamer/blob/main/images/edit_env_variable.PNG)
 
 * Add system variable “GSTREAMER_DIR” “C:\gstreamer\1.0\x86_64” \
 \
-![alt text](https://miro.medium.com/max/1308/1*2nOzcr19lNxtYFCZn01_QA.png)
+![alt text](https://github.com/FirdowsRahaman/Streaming-Raspberry-Pi-Camera-Using-GStreamer/blob/main/images/edit_system_variable.PNG)
 
-* Click Configure again, The red value will change to white
-* Click Generate
-* Click “Open Project” in Visual Studio: Switch from DEBUG to RELEASE and x64 \
-\
-![alt text](https://miro.medium.com/max/928/1*i0MWwkVK4sM4n48phaHEuw.png)
-
-* Right click on INSTALL and select Build \
-\
-![alt text](https://miro.medium.com/max/554/1*_Y7n7o_z5af1gUuQ-OHhig.png)
    
 ### Download CMAKE & Visual Studio
 *  Install CMAKE: https://cmake.org/download/ 
@@ -35,11 +26,21 @@
 \
 ![alt text](https://miro.medium.com/max/1004/1*uSKSIS1IAr87rjBWMn4YNA.png)
 
+* Click Configure again, The red value will change to white
+* Click Generate
+* Click “Open Project” in Visual Studio: Switch from DEBUG to RELEASE and x64 \
+\
+![alt text](https://miro.medium.com/max/928/1*i0MWwkVK4sM4n48phaHEuw.png)
+
+* Right click on INSTALL and select Build \
+\
+![alt text](https://miro.medium.com/max/554/1*_Y7n7o_z5af1gUuQ-OHhig.png)
+
 * Finally, add bin & lib folder to PATH, located in C:\opencv-4.1.0\build\install\x64\vc16 \
 \
-![alt text](https://miro.medium.com/max/1400/1*UbncaWkwTPo-Dw0G_6_76Q.png) \
+![alt text](https://github.com/FirdowsRahaman/Streaming-Raspberry-Pi-Camera-Using-GStreamer/blob/main/images/opencv_path.PNG) \
 \
-![alt text](https://miro.medium.com/max/946/1*EeGo_77M5MLD8OWKT1fedw.png)
+![alt text](https://github.com/FirdowsRahaman/Streaming-Raspberry-Pi-Camera-Using-GStreamer/blob/main/images/opencv_env_path.PNG)
    
 
 ### Test the Installation
