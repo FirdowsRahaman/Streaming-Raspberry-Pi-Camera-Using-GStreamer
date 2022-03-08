@@ -30,11 +30,11 @@
 * Click Generate
 * Click “Open Project” in Visual Studio: Switch from DEBUG to RELEASE and x64 \
 \
-![alt text](https://miro.medium.com/max/928/1*i0MWwkVK4sM4n48phaHEuw.png)
+![alt text](https://github.com/FirdowsRahaman/Streaming-Raspberry-Pi-Camera-Using-GStreamer/blob/main/images/Screenshot1.png)
 
 * Right click on INSTALL and select Build \
 \
-![alt text](https://miro.medium.com/max/554/1*_Y7n7o_z5af1gUuQ-OHhig.png)
+![alt text](https://github.com/FirdowsRahaman/Streaming-Raspberry-Pi-Camera-Using-GStreamer/blob/main/images/Screenshot2.png)
 
 * Finally, add bin & lib folder to PATH, located in C:\opencv-4.1.0\build\install\x64\vc16 \
 \
