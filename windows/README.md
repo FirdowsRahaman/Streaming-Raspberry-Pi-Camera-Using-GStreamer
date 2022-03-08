@@ -20,11 +20,11 @@
 *  Install Visual Studio: https://visualstudio.microsoft.com/downloads/
 *  Open CMAKE, Select OpenCV source and build folder \
 \
-![alt text](https://miro.medium.com/max/696/1*_KyykDayHWfsfhUk609Vkw.png)
+![alt text](https://github.com/FirdowsRahaman/Streaming-Raspberry-Pi-Camera-Using-GStreamer/blob/main/images/cmake1.PNG)
 
 * Hit Configure, select your Visual Studio version then click Finish \
 \
-![alt text](https://miro.medium.com/max/1004/1*uSKSIS1IAr87rjBWMn4YNA.png)
+![alt text](https://github.com/FirdowsRahaman/Streaming-Raspberry-Pi-Camera-Using-GStreamer/blob/main/images/cmake2.PNG)
 
 * Click Configure again, The red value will change to white
 * Click Generate
